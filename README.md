@@ -29,6 +29,9 @@ FacePsy is designed to capture real-time facial behavior primitives as users int
 
 https://github.com/user-attachments/assets/0d4df9a3-6b37-4368-99b5-5ac7b22dea76
 
+### Building The Project
+
+https://github.com/user-attachments/assets/4c47e496-1089-4ab1-aab2-c6d062a04c8a
 
 ## Requirements
 1. Install JDK 1.8, e.g. [Amazon Corretto 8](https://docs.aws.amazon.com/corretto/latest/corretto-8-ug/downloads-list.html)
