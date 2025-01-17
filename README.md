@@ -23,6 +23,13 @@ FacePsy is designed to capture real-time facial behavior primitives as users int
 * Realtime feature extraction of facial behavior primitives, and stores them remote database
 * Reboot app on device restart, app crash, etc, and continue data collection
 
+## Video Guide
+
+### Requirements Installation
+
+https://github.com/user-attachments/assets/0d4df9a3-6b37-4368-99b5-5ac7b22dea76
+
+
 ## Requirements
 1. Install JDK 1.8, e.g. [Amazon Corretto 8](https://docs.aws.amazon.com/corretto/latest/corretto-8-ug/downloads-list.html)
 2. Install [Jetbrains Toolbox](https://www.jetbrains.com/toolbox-app/)
