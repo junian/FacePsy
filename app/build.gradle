@@ -7,7 +7,7 @@ apply from: '../dependencies.gradle'
 android {
     compileSdkVersion versions.compileSdk
     defaultConfig {
-        applicationId "com.rahulislam.facepsy"
+        applicationId "dev.junian.facepsydroid"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
         versionCode versions.publishVersionCode
@@ -68,6 +68,8 @@ android {
     aaptOptions {
         noCompress "tflite", "lite"
     }
+    buildToolsVersion versions.buildTools
+    ndkVersion "20.0.5594570"
 }
 
 repositories {
