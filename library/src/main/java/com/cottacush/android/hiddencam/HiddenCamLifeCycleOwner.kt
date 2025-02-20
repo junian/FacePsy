@@ -18,6 +18,8 @@ package com.cottacush.android.hiddencam
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
+import android.os.Handler
+import android.os.Looper
 
 /**
  * A [LifecycleOwner] to manage the Lifecycle of the camera engine.
@@ -25,16 +27,37 @@ import androidx.lifecycle.LifecycleRegistry
 internal class HiddenCamLifeCycleOwner : LifecycleOwner {
 
     private val lifecycleRegistry: LifecycleRegistry = LifecycleRegistry(this)
+    private val mainHandler = Handler(Looper.getMainLooper()) // Handler for main thread
 
     init {
+        // Ensure markState is called on the main thread during initialization
+        runOnMainThread {
+            lifecycleRegistry.markState(Lifecycle.State.CREATED)
+        }
+    }
+
+    fun start() = runOnMainThread {
+        lifecycleRegistry.markState(Lifecycle.State.STARTED)
+    }
+
+    fun stop() = runOnMainThread {
         lifecycleRegistry.markState(Lifecycle.State.CREATED)
     }
 
-    fun start() = lifecycleRegistry.markState(Lifecycle.State.STARTED)
-
-    fun stop() = lifecycleRegistry.markState(Lifecycle.State.CREATED)
-
-    fun tearDown() = lifecycleRegistry.markState(Lifecycle.State.DESTROYED)
+    fun tearDown() = runOnMainThread {
+        lifecycleRegistry.markState(Lifecycle.State.DESTROYED)
+    }
 
     override fun getLifecycle(): Lifecycle = lifecycleRegistry
+
+    // Helper function to ensure code runs on the main thread
+    private fun runOnMainThread(action: () -> Unit) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            // Already on the main thread, execute directly
+            action()
+        } else {
+            // Post to the main thread
+            mainHandler.post(action)
+        }
+    }
 }
