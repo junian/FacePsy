@@ -37,6 +37,23 @@ FacePsy is designed to capture real-time facial behavior primitives as users int
 3. Download `google-services.json` file and copy it to `./FacePsy/app/` directory.
 4. Go back to your Firebase Project, select `Authentication`, and enable `Email/Password`.
 5. Go back to your Firebase Project, select `Cloud Firestore` and click `Create Database`.
+6. Go back to your Firebase Project and activate `Storage`.
+
+### Firebase Storage Rules
+
+Replace and modify as needed the rule with following config.
+
+```
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if true;
+    }
+  }
+}
+```
 
 ### Firetore Rules
 
